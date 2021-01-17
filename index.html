@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Own Glassmorphism CSS Generator</title>
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/rangeslider.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/rangeslider.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="bg"></div>
+        <div class="openSettings">Open Settings</div>
+        <div class="main_mainContent">
+            <div class="main_titleContainer">
+                <h1>Create Own Glassmorphism CSS Generator</h1>
+            </div>
+            <div class="main_bg">
+                <h2 class="main_bg_text">GLASSMORPHISM</h2>
+                <div class="main_shape main_glass"></div>
+                <div class="main_shape topLeft"></div>
+                <div class="main_shape topRight"></div>
+                <div class="main_shape bottomLeft"></div>
+                <div class="main_shape bottomRight"></div>
+            </div>
+            <div class="settings">
+                <div class="title_">SETTINGS</div>
+                <div class="ui_slider_">
+                    <div class="blur_amount">
+                        <input type="range" min="0" max="20" step=".5" value="5" id="blur_amount" class="value_change">
+                        <div class="b_v">Blur value</div>
+                        <div class="b_v_amt">5</div>
+                    </div>
+                    <div class="transparency_amount">
+                        <input type="range" min="0" max="1" step=".05" value="0.15" id="transparency_amount"
+                            class="value_change">
+                        <div class="t_v">Transparency</div>
+                        <div class="t_v_amt">0.15</div>
+                    </div>
+                </div>
+                <div class="color_option">
+                    <div class="option_">
+                        <div class="item_text">Color</div>
+                        <div class="item_value"><input type="color" value="#ffffff" id="colorPicker"></div>
+                    </div>
+                </div>
+                <div class="btn_">Copy</div>
+                <div class="copy_style">
+                    <p class="colored__">background:<span></span></p>
+                    <p class="shadow_">box-shadow:<span>0 8px 32px 0 rgba(31,38,135,.37);</span></p>
+                    <p class="filter_">backdrop-filter:<span>0 8px 32px 0 rgba(31,38,135,.37);</span></p>
+                    <p class="radius">border-radius:<span>10px;</span></p>
+                    <div id="copyResult"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        //initial value
+        let alpha = 0.15;
+        let filter = 5;
+        let r = 255;
+        let g = 255;
+        let b = 255;
+        $(".main_shape").css({
+            "background-color": 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')'
+        });
+        $(".colored__ span").text('rgba(' + r + ',' + g + ',' + b + ',' + alpha + ');');
+        $(".filter_ span").text('blur(' + filter + 'px);');
+
+        //toggle settings
+        $(".openSettings").click(function () {
+            $(".settings").toggleClass("open");
+            $(this).toggleClass("open");
+            if ($(this).hasClass("open")) {
+                $(this).text("Close Settings");
+            }
+            else {
+                $(this).text("Open Settings");
+            }
+
+        })
+
+        //for blur
+        $("#blur_amount").rangeslider({
+            polyfill: false,
+            onSlide: function (position, value) {
+                let range_value = value;
+                filter = value;
+                $(".b_v_amt").html(range_value);
+                $(".main_shape").css({
+                    "backdrop-filter": `blur(${value}px)`,
+                });
+                $(".filter_ span").text('blur(' + filter + 'px);');
+            }
+        })
+
+        //for transparency
+        $("#transparency_amount").rangeslider({
+            polyfill: false,
+            onSlide: function (position, value) {
+                let range_value = value;
+                $(".t_v_amt").html(range_value);
+                alpha = value;
+                $(".main_shape").css({
+                    "background-color": 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')',
+                });
+                $(".colored__ span").text('rgba(' + r + ',' + g + ',' + b + ',' + alpha + ');');
+
+            }
+        })
+        //color picker
+        $('#colorPicker').on('input', function () {
+            let color_vaue = this.value
+            hex = color_vaue.replace('#', '');
+            r = parseInt(hex.substring(0, 2), 16);
+            g = parseInt(hex.substring(2, 4), 16);
+            b = parseInt(hex.substring(4, 6), 16);
+            $(".main_shape").css({
+                "background-color": 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')'
+            });
+            $(".colored__ span").text('rgba(' + r + ',' + g + ',' + b + ',' + alpha + ');');
+
+        });
+
+        //for copy css
+        const answer = document.getElementById("copyResult");
+        const copy = document.querySelector(".btn_");
+        const selection = window.getSelection();
+        const range = document.createRange();
+        const textToCopy = document.querySelector(".copy_style")
+
+        copy.addEventListener('click', function (e) {
+            range.selectNodeContents(textToCopy);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            const successful = document.execCommand('copy');
+            if (successful) {
+                answer.style.opacity = 1;
+                answer.innerHTML = 'Copied!';
+                setTimeout(function () {
+                    answer.style.opacity = 0;
+                }, 3000);
+            } else {
+                answer.innerHTML = 'Unable to copy!';
+            }
+            window.getSelection().removeAllRanges()
+        });
+
+    </script>
+</body>
+
+</html>

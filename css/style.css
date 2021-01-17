@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Roboto";
+  color: #fff;
+}
+
+.dFlex, .container, .main_mainContent, .color_option, #copyResult {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 280vh;
+  min-width: 100vw;
+  background: #b43ab3;
+  background: radial-gradient(circle, #b43ab3 40%, #427bd5 52%, #37dbff 100%);
+  z-index: -1;
+}
+
+.main_mainContent {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: relative;
+  margin: 0 auto;
+  padding: 50px 20px 20px;
+  width: 100%;
+  max-width: 1144px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.main_mainContent .main_bg {
+  position: relative;
+  margin: 80px 0;
+}
+
+.main_mainContent .main_bg .main_bg_text {
+  font-size: 100px;
+  line-height: 100px;
+  letter-spacing: -1px;
+  z-index: -1;
+  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.main_shape {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  position: absolute;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.main_shape.main_glass {
+  top: 50%;
+  left: 51%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 200%;
+  width: 57%;
+}
+
+.main_shape.topLeft {
+  top: -50%;
+  left: 27%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 50px;
+  width: 50px;
+}
+
+.main_shape.topRight {
+  top: -85%;
+  right: 24%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.main_shape.bottomLeft {
+  bottom: -95%;
+  left: 17%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.main_shape.bottomRight {
+  right: 23%;
+  bottom: -50%;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  height: 80px;
+  width: 80px;
+}
+
+.openSettings {
+  width: 150px;
+  height: 50px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  background-image: linear-gradient(-45deg, #a276ef, #4062d0);
+  border-radius: 10px;
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  z-index: 99;
+}
+
+.openSettings.open {
+  right: 350px;
+}
+
+.settings {
+  position: fixed;
+  width: 350px;
+  height: 100vh;
+  top: 0;
+  right: -100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  -webkit-transition: right .3s ease-in-out;
+  transition: right .3s ease-in-out;
+}
+
+.settings .title_ {
+  text-transform: uppercase;
+}
+
+.settings.open {
+  right: 0;
+}
+
+.ui_slider_ {
+  width: 100%;
+  margin-top: 80px;
+}
+
+.ui_slider_ .blur_amount,
+.ui_slider_ .transparency_amount {
+  width: 100%;
+  position: Relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.ui_slider_ .b_v, .ui_slider_ .t_v {
+  position: absolute;
+  top: -30px;
+  left: 0;
+}
+
+.ui_slider_ .b_v_amt, .ui_slider_ .t_v_amt {
+  position: absolute;
+  top: -30px;
+  right: 0;
+}
+
+.ui_slider_ .rangeslider--horizontal {
+  margin-top: 10px;
+}
+
+.ui_slider_ .transparency_amount {
+  margin-top: 100px;
+}
+
+.color_option {
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 50px;
+}
+
+.option_ {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.option_ .item_value {
+  margin-left: 15px;
+}
+
+.btn_ {
+  padding: 10px 20px;
+  color: #fff;
+  background-image: linear-gradient(-45deg, #a276ef, #4062d0);
+  margin: 50px 0 10px 0;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 9px 0 rgba(144, 127, 249, 0.39);
+          box-shadow: 0 3px 9px 0 rgba(144, 127, 249, 0.39);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.copy_style {
+  min-height: 164px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  padding: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.copy_style p {
+  margin: 2px 0;
+}
+
+#copyResult {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  opacity: 0;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  color: #fff;
+}
+/*# sourceMappingURL=style.css.map */
